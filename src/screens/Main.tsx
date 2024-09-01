@@ -31,7 +31,7 @@ const Main: FC<unknown> = () => {
           <SelectTrailLevel onSelect={setLevel} />
 
           {/* Submit button */}
-          <Button type="primary" block onClick={() => getTrails()} loading={loading}>
+          <Button data-cy='load-trails' type="primary" block onClick={() => getTrails()} loading={loading}>
             Load Trails
           </Button>
         </StyledFlex>

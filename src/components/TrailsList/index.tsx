@@ -52,7 +52,7 @@ const TrailsList: FC<TrailsListProps> = ({ trails }) => {
   });
 
   return (
-    <div>
+    <div data-cy="success-modal">
       <Table
         style={{ cursor: "pointer" }}
         columns={columns}

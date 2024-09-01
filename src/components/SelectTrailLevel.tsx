@@ -17,7 +17,7 @@ const SelectTrailLevel: FC<SelectTrailLevelProps> = ({
   defaultValue,
 }) => {
   const renderOption = (level: Level) => (
-    <Select.Option key={level.key} value={level.value}>
+    <Select.Option data-cy="difficulty-level-option" key={level.key} value={level.value}>
       {level.key}
     </Select.Option>
   );
@@ -26,6 +26,7 @@ const SelectTrailLevel: FC<SelectTrailLevelProps> = ({
       onChange={(value) => onSelect(value as TrailDifficultyLevel)}
       placeholder="Select Trail difficulty level"
       defaultValue={defaultValue}
+      data-cy="trail-level-select"
     >
       {TRAIL_DIFFICULTY_LEVELS.map(renderOption)}
     </StyledSelect>
