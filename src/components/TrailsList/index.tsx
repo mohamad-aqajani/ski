@@ -36,7 +36,7 @@ const columns: TableProps<Trail>["columns"] = [
     key: "liftsElevationGain",
     render: (_, { accessedByLifts }) =>
       accessedByLifts.map(({ elevationGain, id, name }) => (
-        <ElevateTag name={name} elevationGain={elevationGain} id={id} />
+        <ElevateTag key={id} name={name} elevationGain={elevationGain} id={id} />
       )),
     responsive: ["md"],
   },
