@@ -2,7 +2,6 @@ import React, { ReactElement, PropsWithChildren } from "react";
 import { ConfigProviderProps } from "antd";
 import { ConfigProvider, theme } from "antd";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
-import { px2remTransformer, StyleProvider } from "@ant-design/cssinjs";
 
 const themeObject: ConfigProviderProps["theme"] = {
   token: {
@@ -10,6 +9,10 @@ const themeObject: ConfigProviderProps["theme"] = {
     colorBorder: "#d9d9d9",
     colorText: "#000000",
     colorBgBase: "#ffffff",
+    colorBorderBg: "#bfb6b6",
+    green: "#2dce32",
+    orange: "#ff9f00",
+    red: "#ec4c4c",
     fontFamily: "Aeonik, sans-serif",
     fontSize: 16,
     controlHeight: 45
@@ -31,12 +34,10 @@ const StyledComponentsThemeProvider = ({
 }: PropsWithChildren): ReactElement => {
   const { token } = theme.useToken();
 
-  const px2rem = px2remTransformer({
-    rootValue: 16,
-  });
+
   return (
     <StyledThemeProvider theme={{ antd: token }}>
-      <StyleProvider transformers={[px2rem]}>{children}</StyleProvider>
+      {children}
     </StyledThemeProvider>
   );
 };

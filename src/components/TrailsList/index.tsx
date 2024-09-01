@@ -1,43 +1,79 @@
-import { FC } from "react";
-import { TrailsListProps } from "../types";
-import { Table, TableProps, Tag } from "antd";
+import { Modal, Table, TableProps } from "antd";
+import { FC, useState } from "react";
 import { Trail } from "../../api/types";
+import ElevateTag from "../ElevationTag";
+import { TrailsListProps } from "../types";
+import ColumnTitle from "./ColumnTitle";
+import { SET_TRAIL_STATUS } from "../../api/graphql";
+import { useMutation } from "@apollo/client";
 
 const columns: TableProps<Trail>["columns"] = [
   {
-    title: "Name",
+    title: <ColumnTitle title="Name" />,
     dataIndex: "name",
     key: "name",
   },
   {
-    title: "Difficulty",
+    title: <ColumnTitle title="Difficulty" />,
     dataIndex: "difficulty",
     key: "difficulty",
   },
   {
-    title: "Groomed",
-    dataIndex: "groomed",
+    title: <ColumnTitle title="Groomed" />,
     key: "groomed",
+    render: (_, { groomed }) => (groomed ? "Yes" : "No"),
+    responsive: ["lg"],
+    align: "center",
   },
   {
-    title: "Number Of Lists",
-    dataIndex: "numberOfLifts",
+    title: <ColumnTitle title="Number of Lifts" />,
     key: "numberOfLifts",
+    render: (_, { accessedByLifts }) => accessedByLifts.length,
+    align: "center",
   },
   {
-    title: "Lift Elevation Gain",
+    title: <ColumnTitle title="Elevation Gain" />,
     key: "liftsElevationGain",
     render: (_, { accessedByLifts }) =>
       accessedByLifts.map(({ elevationGain, id, name }) => (
-        <Tag color={"blue"} key={id}>
-          {name}: {elevationGain}
-        </Tag>
+        <ElevateTag name={name} elevationGain={elevationGain} id={id} />
       )),
+    responsive: ["md"],
   },
 ];
 
 const TrailsList: FC<TrailsListProps> = ({ trails }) => {
-  return <Table columns={columns} dataSource={trails} />;
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+
+  const [mutateReservation] = useMutation(SET_TRAIL_STATUS, {
+    onCompleted: () => {
+      setIsSuccessModalOpen(true);
+    },
+  });
+
+  return (
+    <div>
+      <Table
+        style={{ cursor: "pointer" }}
+        columns={columns}
+        dataSource={trails}
+        onRow={(record) => ({
+          onClick: () =>
+            mutateReservation({
+              variables: { id: record.id, status: "CLOSED" },
+            }),
+        })}
+      />
+      <Modal
+        title="Congrats!"
+        open={isSuccessModalOpen}
+        onOk={() => setIsSuccessModalOpen(false)}
+        cancelButtonProps={{ style: { display: 'none' } }}
+      >
+        <p>Thr trail is booked for you!</p>
+      </Modal>
+    </div>
+  );
 };
 
 export default TrailsList;
