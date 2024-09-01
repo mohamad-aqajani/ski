@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Button, Flex, Modal, Space } from "antd";
+import { Button, Flex, Space } from "antd";
 import {
   SelectTrailLevel,
   Background,
