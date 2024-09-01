@@ -45,8 +45,6 @@ export default [...fixupConfigRules(compat.extends(
           version: "detect"
         }
       },
-
-      extends: [ ".html", ".js", ".ts", ".tsx" ],
       
 
     rules: {},
