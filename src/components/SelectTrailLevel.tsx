@@ -12,7 +12,10 @@ const TRAIL_DIFFICULTY_LEVELS: Level[] = [
   { key: "Expert", value: TrailDifficultyLevel.EXPERT },
 ];
 
-const SelectTrailLevel: FC<SelectTrailLevelProps> = ({ onSelect }) => {
+const SelectTrailLevel: FC<SelectTrailLevelProps> = ({
+  onSelect,
+  defaultValue,
+}) => {
   const renderOption = (level: Level) => (
     <Select.Option key={level.key} value={level.value}>
       {level.key}
@@ -20,8 +23,9 @@ const SelectTrailLevel: FC<SelectTrailLevelProps> = ({ onSelect }) => {
   );
   return (
     <StyledSelect
-      onChange={(value) => onSelect(value as string)}
+      onChange={(value) => onSelect(value as TrailDifficultyLevel)}
       placeholder="Select Trail difficulty level"
+      defaultValue={defaultValue}
     >
       {TRAIL_DIFFICULTY_LEVELS.map(renderOption)}
     </StyledSelect>
