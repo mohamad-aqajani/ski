@@ -46,6 +46,11 @@ jobs:
 
       - name: E2E with Cypress
         uses: cypress-io/github-action@v6
+        with:
+          start: ${{ steps.detect-package-manager.outputs.manager }} start
+          wait-on: 'http://localhost:3000/'
+          # wait for 2 minutes for the server to respond
+          wait-on-timeout: 120
 
       - name: Build project
         run: ${{ steps.detect-package-manager.outputs.runner }} build
