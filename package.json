@@ -27,7 +27,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-
   "browserslist": {
     "production": [
       ">0.2%",
@@ -44,12 +43,12 @@
     "@eslint/compat": "^1.1.1",
     "@eslint/eslintrc": "^3.1.0",
     "@eslint/js": "^9.9.1",
+    "cypress": "^13.14.1",
     "eslint": "^9.9.1",
     "eslint-plugin-react": "^7.35.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "globals": "^15.9.0",
     "typescript-eslint": "^8.3.0"
   },
-  
   "homepage": "https://mohamad-aqajani.github.io/ski/"
 }
