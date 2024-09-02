@@ -11,11 +11,9 @@
 
 ## Summary
 
-<video width="600" controls>
-  <source src="docs/video.mov">
-  Your browser does not support the video tag.
-</video>
+Demo: https://drive.google.com/file/d/15nKS4P_nWCqZCiikojUc9MmyMq9gT6ej/view?usp=sharing
 
+<img src="docs/desktop.png" width="600px"/>
 <img src="docs/IMG_2724.PNG" width="350px"/>
 <img src="docs/IMG_2725.PNG" width="350px"/>
 
