@@ -1,46 +1,102 @@
-# Getting Started with Create React App
+# Ski organizing manager app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
 
-## Available Scripts
+-   [Summary](#summary)
+-   [Running with Yarn](#running-with-yarn)
+-   [Libraries used](#libraries-used)
+-   [E2E Tests](#e2e-tests)
+-   [CI/CD with GitHub Actions](#cicd-with-github-actions)
+-   [UI design ( Ant Design )](#ui-design--ant-design)
 
-In the project directory, you can run:
+## Summary
 
-### `npm start`
+<video width="600" controls>
+  <source src="docs/video.mov">
+  Your browser does not support the video tag.
+</video>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<img src="docs/IMG_2724.PNG" width="350px"/>
+<img src="docs/IMG_2725.PNG" width="350px"/>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<br>
+In this project, we aim to load the Ski trails based on the required filters.
 
-### `npm test`
+How it works?
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+-   If there is no filter applied, all the trails will be loaded.
+-   The only filter in backend side is the trail status. If the status is closed, the trail will not be loaded. all the other filters are applied in front-end side.
+-   Every trails row in the table has a column to show the lifts and their elevation gain.
+-   To reserve a trail, click on the row of the trail. then a popup will come up to show successful reservation.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Elevation gain tages
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Lift with elevation gain lower than 500 => Safe (Green)
 
-### `npm run eject`
+Lift with elevation gain between 500 and 1000 => Moderate (Orange)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Lift with elevation gain higher than 1000 => Difficult (Red)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Running with Yarn
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+To run the project using Yarn, follow these steps:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. Install the dependencies:
 
-## Learn More
+```bash
+yarn install
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. Start the application:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+yarn start
+```
+
+## Libraries used
+
+| Package    | Version |
+| ---------- | ------- |
+| React      | 18.3.1  |
+| Typescript | 4.9.5   |
+| Antd       | latest  |
+| Cypress    | 13.14.1 |
+| EsLint     | 8       |
+| Graphql    | 16.9.0  |
+
+---
+
+## E2E Tests
+
+This project includes some e2e tests using [**Cypress**](https://www.cypress.io/). To run the tests, follow these steps:
+
+```bash
+npx cypress run
+```
+
+For running in chrome:
+
+```bash
+npx cypress open
+```
+
+The Tests are Integrated to the CI/CD pipeline and will be triggered with each push to the repository.
+
+<img src="./docs//pipeline.png" />
+
+## CI/CD with GitHub Actions
+
+CI/CD is implemented using **GitHub Actions** to automate the build, test, and deployment processes. With each push to the repository, the defined workflows will be triggered to ensure the code quality and deploy the application to the desired environment.
+
+The application is hosted on _**Github pages**_ and can be accessed using the following link:
+
+[https://mohamad-aqajani.github.io/ski](https://mohamad-aqajani.github.io/ski)
+
+
+## UI design ( Ant Design )
+
+The design is based on the [Ant Design](https://ant.design/) library. The design is simple and user-friendly.
+
+In the folder **Components**, you can find the components used in the project. The components are reusable and easy to use.
