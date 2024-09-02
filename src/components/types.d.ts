@@ -1,10 +1,10 @@
-import { Trail, TrailDifficultyLevel } from "../api/types";
+import { Trail, TrailDifficultyLevel } from '../api/types'
 
 export type SelectTrailLevelProps = {
-  onSelect: (value: TrailDifficultyLevel) => void;
-  defaultValue?: TrailDifficultyLevel;
-};
+    onSelect: (value: TrailDifficultyLevel) => void
+    defaultValue?: TrailDifficultyLevel
+}
 
 export type TrailsListProps = {
-  trails: Trail[];
-};
+    trails: Trail[]
+}

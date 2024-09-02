@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 const ColumnTitle = ({ title }: { title: string }) => {
-  return <StyledTitle>{title}</StyledTitle>;
-};
+    return <StyledTitle>{title}</StyledTitle>
+}
 
-export default ColumnTitle;
+export default ColumnTitle
 
 const StyledTitle = styled.span`
-  color: ${({ theme }) => theme.antd.colorBorderBg};
-`;
+    color: ${({ theme }) => theme.antd.colorBorderBg};
+`
