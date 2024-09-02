@@ -54,6 +54,13 @@ const TrailsList: FC<TrailsListProps> = ({ trails }) => {
         onCompleted: () => {
             setIsSuccessModalOpen(true)
         },
+
+        onError: (error) => {
+            Modal.error({
+                title: 'Oops something went wrong!',
+                content: error.message,
+              });
+        }
     })
 
     return (
