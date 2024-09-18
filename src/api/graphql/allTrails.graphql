@@ -1,0 +1,14 @@
+query GetAllOpenTrails($status: TrailStatus) {
+ allTrails(status: $status) {
+  id
+  name
+  difficulty
+  groomed
+  accessedByLifts {
+   id
+   name
+   capacity
+   elevationGain
+  }
+ }
+}

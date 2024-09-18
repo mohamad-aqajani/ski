@@ -1,0 +1,14 @@
+mutation SetTrailStatus($id: ID!, $status: TrailStatus!) {
+ setTrailStatus(id: $id, status: $status) {
+  id
+  name
+  difficulty
+  groomed
+  accessedByLifts {
+   id
+   name
+   capacity
+   elevationGain
+  }
+ }
+}

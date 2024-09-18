@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Select } from 'antd'
+import { Select, Space, Typography } from 'antd'
 import { SelectTrailLevelProps } from './types'
 import { TrailDifficultyLevel } from '../api/types'
 import styled from 'styled-components'
@@ -26,14 +26,19 @@ const SelectTrailLevel: FC<SelectTrailLevelProps> = ({
         </Select.Option>
     )
     return (
-        <StyledSelect
-            onChange={(value) => onSelect(value as TrailDifficultyLevel)}
-            placeholder="Select Trail difficulty level"
-            defaultValue={defaultValue}
-            data-cy="trail-level-select"
-        >
-            {TRAIL_DIFFICULTY_LEVELS.map(renderOption)}
-        </StyledSelect>
+        <Space direction='vertical'>
+            <Typography.Text strong>
+               Difficulty Level
+            </Typography.Text>
+            <StyledSelect
+                onChange={(value) => onSelect(value as TrailDifficultyLevel)}
+                placeholder="Select Trail difficulty level"
+                defaultValue={defaultValue}
+                data-cy="trail-level-select"
+            >
+                {TRAIL_DIFFICULTY_LEVELS.map(renderOption)}
+            </StyledSelect>
+        </Space>
     )
 }
 

@@ -20,6 +20,6 @@ import './commands'
 // require('./commands')
 
 beforeEach(() => {
-    // Visit the homepage before each test
-    cy.visit('http://localhost:3000')
+ // Visit the homepage before each test
+ cy.visit('http://localhost:3000')
 })

@@ -2,12 +2,12 @@
 
 ## Table of Contents
 
--   [Summary](#summary)
--   [Running with Yarn](#running-with-yarn)
--   [Libraries used](#libraries-used)
--   [E2E Tests](#e2e-tests)
--   [CI/CD with GitHub Actions](#cicd-with-github-actions)
--   [UI design ( Ant Design )](#ui-design--ant-design)
+- [Summary](#summary)
+- [Running with Yarn](#running-with-yarn)
+- [Libraries used](#libraries-used)
+- [E2E Tests](#e2e-tests)
+- [CI/CD with GitHub Actions](#cicd-with-github-actions)
+- [UI design ( Ant Design )](#ui-design--ant-design)
 
 ## Summary
 
@@ -22,12 +22,10 @@ In this project, we aim to load the Ski trails based on the required filters.
 
 How it works?
 
--   If there is no filter applied, all the trails will be loaded.
--   The only filter in backend side is the trail status. If the status is closed, the trail will not be loaded. all the other filters are applied in front-end side.
--   Every trails row in the table has a column to show the lifts and their elevation gain.
--   To reserve a trail, click on the row of the trail. then a popup will come up to show successful reservation.
-
-
+- If there is no filter applied, all the trails will be loaded.
+- The only filter in backend side is the trail status. If the status is closed, the trail will not be loaded. all the other filters are applied in front-end side.
+- Every trails row in the table has a column to show the lifts and their elevation gain.
+- To reserve a trail, click on the row of the trail. then a popup will come up to show successful reservation.
 
 ### Elevation gain tages
 
@@ -91,7 +89,6 @@ CI/CD is implemented using **GitHub Actions** to automate the build, test, and d
 The application is hosted on _**Github pages**_ and can be accessed using the following link:
 
 [https://mohamad-aqajani.github.io/ski](https://mohamad-aqajani.github.io/ski)
-
 
 ## UI design ( Ant Design )
 
