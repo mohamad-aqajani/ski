@@ -4,13 +4,13 @@ import Main from './pages/Main'
 import { ThemeProvider } from './theme/ThemeProvider'
 
 function App() {
- return (
-  <ApolloProvider client={client}>
-   <ThemeProvider>
-    <Main />
-   </ThemeProvider>
-  </ApolloProvider>
- )
+  return (
+    <ApolloProvider client={client}>
+      <ThemeProvider>
+        <Main />
+      </ThemeProvider>
+    </ApolloProvider>
+  )
 }
 
 export default App

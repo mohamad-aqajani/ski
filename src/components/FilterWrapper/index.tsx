@@ -1,4 +1,4 @@
-import { Divider, Flex, Slider, Switch, Typography } from 'antd'
+import { Button, Divider, Flex, Slider, Switch, Typography } from 'antd'
 import { FC } from 'react'
 import SelectTrailLevel from '../SelectTrailLevel'
 import styled from 'styled-components'
@@ -26,12 +26,15 @@ const FilterWrapper: FC<unknown> = () => {
                 max={3000}
                 defaultValue={[500, 2500]}
             />
+
+            <Divider />
+            <Button type="primary" block>
+                Apply Filters
+            </Button>
         </FullWidthFlex>
     )
 }
 
 export default FilterWrapper
-
-
 
 const StyledSlider = styled(Slider)``
