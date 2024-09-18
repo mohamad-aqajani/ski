@@ -4,6 +4,7 @@ import { FC } from 'react'
 
 import FilterWrapper from '../components/FilterWrapper'
 import styled from 'styled-components'
+import TrailsList from '../components/TrailsList'
 
 const Main: FC<unknown> = () => {
     const {
@@ -17,7 +18,7 @@ const Main: FC<unknown> = () => {
                 <FilterWrapper />
             </StyledSlider>
             <Layout.Content>
-               
+               <TrailsList />
             </Layout.Content>
         </Layout>
     )
@@ -32,7 +33,7 @@ const StyledBackground = styled.div`
 `
 
 const StyledSlider = styled(Layout.Sider)`
-    @media (max-width: 800px) {
+    @media (max-width: 820px) {
         display: none;
     }
     padding: 20px;
