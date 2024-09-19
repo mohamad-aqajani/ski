@@ -1,68 +1,73 @@
-import { useQuery } from '@apollo/client'
-import { createContext, FC, ReactNode, useContext, useReducer } from 'react'
-import { GET_TRAILS } from '../../api/graphql/trails'
-import { Trail } from '../../api/types'
+import { useQuery } from '@apollo/client';
+import {
+  createContext,
+  FC,
+  ReactNode,
+  useContext,
+  useMemo,
+  useReducer,
+} from 'react';
+import { GET_TRAILS } from '../../api/graphql/trails';
+import { Trail } from '../../api/types';
+import filterTrails from '../../utils/filterTrails';
+import trailStateReducer, { initialState } from './trailStateReducer';
 import {
   TrailContextStateType,
   TrailContextType,
   TrailStateAction,
-} from './types'
-import useFilterFunction from './useFilterFunction'
-import trailStateReducer from './trailStateReducer'
+} from './types';
 
-const TrailContext = createContext<TrailContextType>({} as TrailContextType)
+const TrailContext = createContext<TrailContextType>({} as TrailContextType);
 
 export const TrailProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const initialState: TrailContextStateType = {
-    groupSize: undefined,
-    isGroomed: false,
-    level: undefined,
-    elevationRange: [200, 3000],
-    trails: [],
-  }
-
-  const [{ level, elevationRange, isGroomed, groupSize, trails }, dispatch] =
+  const [{ level, elevationRange, isGroomed, groupSize }, dispatch] =
     useReducer<
       (
         state: TrailContextStateType,
         action: TrailStateAction
       ) => TrailContextStateType
-    >(trailStateReducer, initialState)
+    >(trailStateReducer, initialState);
 
   const setGroupSize = (groupSize: number) => {
-    dispatch({ type: 'SET_GROUP_SIZE', payload: groupSize })
-  }
+    dispatch({ type: 'SET_GROUP_SIZE', payload: groupSize });
+  };
 
   const setLevel = (level: string) => {
-    dispatch({ type: 'SET_LEVEL', payload: level })
-  }
+    dispatch({ type: 'SET_LEVEL', payload: level });
+  };
 
   const setIsGroomed = (isGroomed: boolean) => {
-    dispatch({ type: 'SET_IS_GROOMED', payload: isGroomed })
-  }
+    dispatch({ type: 'SET_IS_GROOMED', payload: isGroomed });
+  };
 
   const setElevationRange = (range: [number, number]) => {
-    dispatch({ type: 'SET_ELEVATION_RANGE', payload: range })
-  }
+    dispatch({ type: 'SET_ELEVATION_RANGE', payload: range });
+  };
 
-  const { loading } = useQuery<{ allTrails: Trail[] }>(GET_TRAILS, {
-    /** We save the data to a state, because we wanna apply filters on it */
-    onCompleted(data) {
-      dispatch({ type: 'SET_TRAILS', payload: data.allTrails })
-    },
-  })
+  const resetFilters = () => {
+    dispatch({ type: 'SET_GROUP_SIZE', payload: initialState.groupSize });
+    dispatch({ type: 'SET_LEVEL', payload: initialState.level });
+    dispatch({ type: 'SET_IS_GROOMED', payload: initialState.isGroomed });
+    dispatch({
+      type: 'SET_ELEVATION_RANGE',
+      payload: initialState.elevationRange,
+    });
+  };
 
-  useFilterFunction(
-    trails,
-    level,
-    elevationRange,
-    isGroomed,
-    groupSize,
-    dispatch
-  )
+  const { loading, data } = useQuery<{ allTrails: Trail[] }>(GET_TRAILS);
+
+  const filteredTrails = useMemo(() => {
+    return filterTrails(
+      data?.allTrails || [],
+      level,
+      elevationRange,
+      isGroomed,
+      groupSize
+    );
+  }, [data, level, elevationRange, isGroomed, groupSize]);
 
   const value: TrailContextType = {
-    trails,
+    trails: filteredTrails,
     groupSize,
     isGroomed,
     level,
@@ -72,14 +77,17 @@ export const TrailProvider: FC<{ children: ReactNode }> = ({ children }) => {
     setLevel,
     setIsGroomed,
     setElevationRange,
-  }
-  return <TrailContext.Provider value={value}>{children}</TrailContext.Provider>
-}
+    resetFilters,
+  };
+  return (
+    <TrailContext.Provider value={value}>{children}</TrailContext.Provider>
+  );
+};
 
 export const useTrail = () => {
-  const context = useContext(TrailContext)
+  const context = useContext(TrailContext);
   if (!context) {
-    throw new Error('useTrail must be used within a TrailProvider')
+    throw new Error('useTrail must be used within a TrailProvider');
   }
-  return context
-}
+  return context;
+};

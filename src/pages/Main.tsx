@@ -1,24 +1,18 @@
-import { Button, Drawer, Layout, theme } from 'antd'
-import { FC, useState } from 'react'
-// import useMainScreen from './useMainScreen'
+import { Button, Drawer, Layout } from 'antd';
+import { FC, useState } from 'react';
+import { FilterFilled } from '@ant-design/icons';
+import styled from 'styled-components';
+import { FilterWrapper, TrailsList } from '../components';
+import StickySider from '../components/StickySider';
 
-import { FilterFilled } from '@ant-design/icons'
-import styled from 'styled-components'
-import FilterWrapper from '../components/FilterWrapper'
-import TrailsList from '../components/TrailsList'
+const Main: FC = () => {
+  const [drawerVisible, setDrawerVisible] = useState(false);
 
-const Main: FC<unknown> = () => {
-  const {
-    token: { colorBgBase },
-  } = theme.useToken()
-  const [drawerVisible, setDrawerVisible] = useState(false)
-  // const { trails, groupSize, setGroupSize, setLevel, getTrails, loading } =
-  //   useMainScreen()
   return (
     <Layout>
-      <StyledSider width={400} breakpoint="md">
+      <StickySider>
         <FilterWrapper />
-      </StyledSider>
+      </StickySider>
       <Layout.Content>
         <SideTrigger type="primary" onClick={() => setDrawerVisible(true)}>
           <FilterFilled />
@@ -36,27 +30,11 @@ const Main: FC<unknown> = () => {
         <FilterWrapper />
       </Drawer>
     </Layout>
-  )
-}
+  );
+};
 
-export default Main
+export default Main;
 
-const StyledBackground = styled.div`
-  background-color: ${({ theme }) => theme.antd.colorBgBase};
-  display: flex;
-  flex: 1;
-`
-
-const StyledSider = styled(Layout.Sider)`
-  overflow: auto;
-  height: 100vh;
-  position: fixed;
-  left: 0;
-  @media (max-width: 820px) {
-    display: none;
-  }
-  padding: 20px;
-`
 const SideTrigger = styled(Button)`
   width: 100px;
   height: 40px;
@@ -64,4 +42,4 @@ const SideTrigger = styled(Button)`
   @media (min-width: 820px) {
     display: none;
   }
-`
+`;

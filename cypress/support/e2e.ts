@@ -14,12 +14,12 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import './commands';
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
 beforeEach(() => {
   // Visit the homepage before each test
-  cy.visit('http://localhost:3000')
-})
+  cy.visit('http://localhost:3000');
+});

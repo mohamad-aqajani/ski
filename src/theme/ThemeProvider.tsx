@@ -1,7 +1,7 @@
-import React, { ReactElement, PropsWithChildren } from 'react'
-import { ConfigProviderProps } from 'antd'
-import { ConfigProvider, theme } from 'antd'
-import { ThemeProvider as StyledThemeProvider } from 'styled-components'
+import React, { ReactElement, PropsWithChildren } from 'react';
+import { ConfigProviderProps } from 'antd';
+import { ConfigProvider, theme } from 'antd';
+import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 
 const themeObject: ConfigProviderProps['theme'] = {
   token: {
@@ -33,7 +33,7 @@ const themeObject: ConfigProviderProps['theme'] = {
       borderRadius: 8,
     },
   },
-}
+};
 
 export const ThemeProvider = ({
   children,
@@ -42,17 +42,17 @@ export const ThemeProvider = ({
     <ConfigProvider theme={themeObject}>
       <StyledComponentsThemeProvider>{children}</StyledComponentsThemeProvider>
     </ConfigProvider>
-  )
-}
+  );
+};
 
 const StyledComponentsThemeProvider = ({
   children,
 }: PropsWithChildren): ReactElement => {
-  const { token } = theme.useToken()
+  const { token } = theme.useToken();
 
   return (
     <StyledThemeProvider theme={{ antd: token }}>
       {children}
     </StyledThemeProvider>
-  )
-}
+  );
+};
