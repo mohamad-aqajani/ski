@@ -7,7 +7,7 @@ import { GET_TRAILS } from '../../api/graphql/trails'
 
 const TrailsList: FC<unknown> = () => {
     const { data, error } = useQuery<{ allTrails: Trail[] }>(GET_TRAILS)
-    console.log({ data, error })
+
     const renderListItem = (trail: Trail) => <TrailItem trail={trail} />
     return (
         <div>

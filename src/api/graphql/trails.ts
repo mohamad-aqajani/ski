@@ -7,6 +7,9 @@ export const GET_TRAILS = gql`
             name
             difficulty
             groomed
+            trees
+            night
+            status
             accessedByLifts {
                 id
                 name

@@ -20,7 +20,7 @@ const FilterWrapper: FC<unknown> = () => {
       </FullWidthFlex>
       <Divider />
       <Typography.Text strong>Elevation Range</Typography.Text>
-      <StyledSlider range min={100} max={3000} defaultValue={[500, 2500]} />
+      <StyledSlider range min={100} max={4000} defaultValue={[500, 2500]} />
 
       <Divider />
       <Button type="primary" block>
