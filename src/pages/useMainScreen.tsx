@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from 'react'
 import { Lift, Trail, TrailDifficultyLevel } from '../api/types'
 import { useLazyQuery } from '@apollo/client'
-import GET_TRAILS from '../api/graphql/allTrails.graphql'
+
 type GroupSize = number | undefined
 
 const useMainScreen = () => {

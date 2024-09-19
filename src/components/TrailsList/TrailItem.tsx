@@ -1,16 +1,19 @@
-import { CheckCircleOutlined } from '@ant-design/icons'
+import { CheckCircleOutlined, CloseCircleOutlined } from '@ant-design/icons'
 import { Card, Flex, List, notification, Typography } from 'antd'
 import { useState } from 'react'
 import styled from 'styled-components'
 import TrailDetailsModal from '../TrailDetailsModal'
 import TrailLevelTag from './TrailLevelTag'
+import { Lift, Trail } from '../../api/types'
+import { SET_TRAIL_STATUS } from '../../api/graphql/trails'
+import { ApolloError, useMutation } from '@apollo/client'
 
-const TrailItem = () => {
+const TrailItem = ({ trail }: { trail: Trail }) => {
     const [isDetailsModalVisible, setIsDetailsModalVisible] = useState(false)
 
     const [api, contextHolder] = notification.useNotification()
 
-    const openNotification = () => {
+    const openNotificationSuccess = () => {
         api.info({
             message: (
                 <Typography.Text color="white" strong>
@@ -31,6 +34,47 @@ const TrailItem = () => {
         })
     }
 
+    const openNotificationError = (error: ApolloError) => {
+        api.error({
+            message: (
+                <Typography.Text color="white" strong>
+                    Oops something went wrong!
+                </Typography.Text>
+            ),
+            description: (
+                <Typography.Text color="white">{error.message}</Typography.Text>
+            ),
+            placement: 'bottom',
+            showProgress: true,
+        })
+    }
+
+    const smallestElevationHeight = () =>
+        trail.accessedByLifts.reduce(
+            (acc, lift) =>
+                acc < lift.elevationGain ? acc : lift.elevationGain,
+            Number.MAX_SAFE_INTEGER
+        )
+
+    const [mutateReservation] = useMutation(SET_TRAIL_STATUS, {
+        onCompleted: () => {
+            openNotificationSuccess()
+        },
+
+        onError: (error) => {
+            openNotificationError(error)
+        },
+    })
+
+    const onReserve = () => {
+        mutateReservation({
+            variables: {
+                id: trail.id,
+                status: 'CLOsSED',
+            },
+        })
+        setIsDetailsModalVisible(false)
+    }
     return (
         <List.Item>
             <StyledCard
@@ -39,40 +83,49 @@ const TrailItem = () => {
             >
                 <ItemWrapper>
                     <TagWrapper>
-                        <TrailLevelTag />
+                        <TrailLevelTag difficulty={trail.difficulty} />
                     </TagWrapper>
                     <CoverImage
-                        src={require('../../assets/images/beginner.jpeg')}
+                        src={require(
+                            `../../assets/images/${trail.difficulty}.jpeg`
+                        )}
                     />
 
                     <Flex vertical gap={16}>
                         <Typography.Title level={4}>
-                            Trail Name
+                            {trail.name}
                         </Typography.Title>
                         <Flex vertical gap={10}>
                             <Typography.Text>
                                 Groomed:{' '}
-                                <Typography.Text strong>Yes</Typography.Text>
+                                <Typography.Text strong>
+                                    {trail.groomed ? 'YES' : 'NO'}
+                                </Typography.Text>
                             </Typography.Text>
                             <Typography.Text>
                                 Number of Lifts:{' '}
-                                <Typography.Text strong>3</Typography.Text>
+                                <Typography.Text strong>
+                                    {trail.accessedByLifts.length}
+                                </Typography.Text>
                             </Typography.Text>
 
                             <Typography.Text>
                                 Smallest Elevation Height:{' '}
-                                <Typography.Text strong>3230</Typography.Text>
+                                <Typography.Text strong>
+                                    {smallestElevationHeight()}
+                                </Typography.Text>
                             </Typography.Text>
                         </Flex>
                     </Flex>
                 </ItemWrapper>
             </StyledCard>
             <TrailDetailsModal
+                trail={trail}
                 isVisible={isDetailsModalVisible}
                 onClose={() => {
                     setIsDetailsModalVisible(false)
-                    openNotification()
                 }}
+                onReserve={onReserve}
             />
             {contextHolder}
         </List.Item>
@@ -88,6 +141,8 @@ const StyledCard = styled(Card)`
 
 const CoverImage = styled.img`
     border-radius: 8px;
+    width: 300px;
+    height: 200px;
 `
 const ItemWrapper = styled.div`
     display: flex;

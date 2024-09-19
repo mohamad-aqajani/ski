@@ -13,3 +13,7 @@ export type TrailsListProps = {
 export type StyledInputNumberProps = InputNumberProps & {
   label: string
 }
+
+export type TrailTagProps = {
+  difficulty: TrailDifficultyLevel | string
+}
