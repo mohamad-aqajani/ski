@@ -8,7 +8,7 @@
 - [E2E Tests](#e2e-tests)
 - [Unit Tests](#unit-tests)
 - [CI/CD with GitHub Actions](#cicd-with-github-actions)
-- [UI design ( Ant Design )](#ui-design--ant-design)
+- [UI - Ant Design](#ui--ant-design)
 
 ## Summary
 
@@ -17,9 +17,10 @@ Demo: [https://mohamad-aqajani.github.io/ski](https://mohamad-aqajani.github.io/
 Video: https://drive.google.com/file/d/1md4Gz3W9DggGBMLfvGwlzugMwEHTbhsZ/view?usp=sharing
 
 <img src="docs/desktop.png" width="600px"/>
-<img src="docs/IMG_2724.PNG" width="350px"/>
-<img src="docs/IMG_2725.PNG" width="350px"/>
-
+<p float="left">
+<img src="docs/IMG_2724.PNG" width="300px"/>
+<img src="docs/IMG_2725.PNG" width="300px"/>
+</p>
 <br>
 
 
@@ -82,7 +83,7 @@ The application is hosted on _**Github pages**_ and can be accessed using the li
 
 
 
-## UI design ( Ant Design )
+## UI - Ant Design
 
 The design is based on the [Ant Design](https://ant.design/) library. The design is simple and user-friendly.
 
