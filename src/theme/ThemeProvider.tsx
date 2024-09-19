@@ -32,7 +32,6 @@ const themeObject: ConfigProviderProps['theme'] = {
     Image: {
       borderRadius: 8,
     },
-
   },
 }
 
