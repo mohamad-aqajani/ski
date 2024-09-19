@@ -16,7 +16,7 @@ const TrailItem = ({ trail }: { trail: Trail }) => {
   } = useTrailItem(trail);
   return (
     <List.Item>
-      <StyledCard hoverable onClick={() => setIsDetailsModalVisible(true)}>
+      <StyledCard data-cy="list-item-card" hoverable onClick={() => setIsDetailsModalVisible(true)}>
         <ItemWrapper>
           <TagWrapper>
             <TrailLevelTag difficulty={trail.difficulty} />

@@ -33,7 +33,7 @@ const FilterWrapper: FC = () => {
 
       <FullWidthFlex justify="space-between" align="center">
         <Typography.Text strong>Groomed</Typography.Text>
-        <Switch value={isGroomed} onChange={setIsGroomed} />
+        <Switch data-cy="groomed-switch-filter" value={isGroomed} onChange={setIsGroomed} />
       </FullWidthFlex>
       <Divider />
       <Typography.Text strong>Elevation Range</Typography.Text>

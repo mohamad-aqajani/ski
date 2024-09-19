@@ -1,6 +1,6 @@
-import { Card, Flex, List, Modal, Row, Tag, Typography } from 'antd';
-import { Lift } from '../../api/types';
-import { TrailsDetailModalProps } from './types';
+import { Card, Flex, List, Modal, Row, Tag, Typography } from 'antd'
+import { Lift } from '../../api/types'
+import { TrailsDetailModalProps } from './types'
 
 const TrailDetailsModal = ({
   isVisible,
@@ -8,13 +8,20 @@ const TrailDetailsModal = ({
   trail,
   onReserve,
 }: TrailsDetailModalProps) => {
+  /** I'm separating this component because I want to test it with e2e test */
+  const ReserveButtonText = () => (
+    <Typography.Text style={{ color: 'white' }} data-cy="reserve-button" strong>
+      Reserve
+    </Typography.Text>
+  )
+
   const renderLiftItems = (item: Lift) => (
     <List.Item>
       <Typography.Text strong>{item.name}</Typography.Text>
 
       <Typography.Text>{item.elevationGain}m</Typography.Text>
     </List.Item>
-  );
+  )
   return (
     <Modal
       title={trail.name}
@@ -22,10 +29,11 @@ const TrailDetailsModal = ({
       onOk={onReserve}
       onClose={onClose}
       onCancel={onClose}
-      okText="Reserve"
+      okText={<ReserveButtonText />}
       cancelButtonProps={{ style: { display: 'none' } }}
     >
       <Card
+        data-cy="trail-details-modal"
         cover={
           <img src={require(`../../assets/images/${trail.difficulty}.jpeg`)} />
         }
@@ -64,7 +72,7 @@ const TrailDetailsModal = ({
         </Flex>
       </Card>
     </Modal>
-  );
-};
+  )
+}
 
-export default TrailDetailsModal;
+export default TrailDetailsModal

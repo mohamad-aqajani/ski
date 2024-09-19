@@ -1,13 +1,14 @@
-import { InputNumber as AntdInputNumber, Space, Typography } from 'antd';
-import { FC } from 'react';
-import styled from 'styled-components';
-import { StyledInputNumberProps } from './types';
+import { InputNumber as AntdInputNumber, Space, Typography } from 'antd'
+import { FC } from 'react'
+import styled from 'styled-components'
+import { StyledInputNumberProps } from './types'
 
 const InputNumber: FC<StyledInputNumberProps> = (props) => {
   return (
     <Space direction="vertical">
       <Typography.Text strong>{props.label}</Typography.Text>
       <StyledInputNumber
+        data-cy="input-number"
         min={1}
         max={100}
         placeholder="Enter group size"
@@ -15,11 +16,11 @@ const InputNumber: FC<StyledInputNumberProps> = (props) => {
         {...props}
       />
     </Space>
-  );
-};
+  )
+}
 
-export default InputNumber;
+export default InputNumber
 
 const StyledInputNumber = styled(AntdInputNumber)`
   width: 100%;
-`;
+`

@@ -13,6 +13,7 @@ const TrailsList: FC = () => {
         itemLayout="horizontal"
         dataSource={trails}
         renderItem={renderListItem}
+        data-cy="list-trails"
       />
     </div>
   );
