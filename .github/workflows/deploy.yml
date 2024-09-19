@@ -43,6 +43,8 @@ jobs:
 
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+      - name: Run Unit tests by Jest
+        run: ${{ steps.detect-package-manager.outputs.runner }} test
 
       - name: E2E with Cypress
         uses: cypress-io/github-action@v6
